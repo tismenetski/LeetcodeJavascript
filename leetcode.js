@@ -922,6 +922,458 @@ console.log("Solution 1460: " +solution1460Targetd+", " +solution1460Arrd +  " -
 
 
 
+console.log("--------------------------------------------------------------------------------------------\n")
+// ============== Solution 1413 =================
+/*
+
+Success
+Details
+Runtime: 80 ms, faster than 38.66% of JavaScript online submissions for Minimum Value to Get Positive Step by Step Sum.
+Memory Usage: 38.9 MB, less than 8.24% of JavaScript online submissions for Minimum Value to Get Positive Step by Step Sum.
+Next challenges:
+ */
+
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minStartValue = function(nums) {
+
+    let result=1;
+    for (i=0,j=result;i<nums.length;){
+        if (result+nums[i]>0){
+                result+=nums[i];
+                i++;
+        }
+        else
+        {
+            j++;
+            result=j;
+            i=0;
+        }
+    }
+return j;
+};
+
+let solution1413a = [-3,2,-3,4,2];
+let solution1413b = [1,2];
+let solution1413c = [1,-2,-3];
+
+console.log("Solution 1413: " +solution1413a+" --> " +minStartValue(solution1413a));
+console.log("Solution 1413: " +solution1413b+" --> " +minStartValue(solution1413b));
+console.log("Solution 1413: " +solution1413c+" --> " +minStartValue(solution1413c));
+
+
+
+console.log("--------------------------------------------------------------------------------------------\n")
+// ============== Solution 1603 =================
+
+/*
+
+Success
+Details
+Runtime: 156 ms, faster than 100.00% of JavaScript online submissions for Design Parking System.
+Memory Usage: 46.2 MB, less than 100.00% of JavaScript online submissions for Design Parking System.
+Next challenges:
+
+ */
+
+/**
+ * @param {number} big
+ * @param {number} medium
+ * @param {number} small
+ */
+var ParkingSystem = function(big, medium, small) {
+
+    this.big = big;
+    this.medium = medium;
+    this.small = small;
+};
+
+/**
+ * @param {number} carType
+ * @return {boolean}
+ */
+ParkingSystem.prototype.addCar = function(carType) {
+
+    switch (carType) {
+        case 3:
+            if (this.small>0){
+                this.small--;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            break;
+        case 2:
+            if (this.medium>0){
+                this.medium--;
+                return true;
+            }
+        {
+            return false;
+        }
+            break;
+        case 1:
+            if (this.big>0){
+                this.big--;
+                return true;
+            }
+        {
+            return false;
+        }
+            break;
+
+        default:
+            return false;
+    }
+};
+
+/**
+ * Your ParkingSystem object will be instantiated and called as such:
+ * var obj = new ParkingSystem(big, medium, small)
+ * var param_1 = obj.addCar(carType)
+ */
+
+
+console.log("--------------------------------------------------------------------------------------------\n")
+// ============== Solution 1455 =================
+/*
+
+38 / 38 test cases passed.
+Status: Accepted
+Runtime: 76 ms
+Memory Usage: 38.5 MB
+
+ */
+
+/*
+Given a sentence that consists of some words separated by a single space, and a searchWord.
+
+You have to check if searchWord is a prefix of any word in sentence.
+
+Return the index of the word in sentence where searchWord is a prefix of this word (1-indexed).
+
+If searchWord is a prefix of more than one word, return the index of the first word (minimum index). If there is no such word return -1.
+
+A prefix of a string S is any leading contiguous substring of S.
+
+
+
+Example 1:
+
+Input: sentence = "i love eating burger", searchWord = "burg"
+Output: 4
+Explanation: "burg" is prefix of "burger" which is the 4th word in the sentence.
+Example 2:
+
+Input: sentence = "this problem is an easy problem", searchWord = "pro"
+Output: 2
+Explanation: "pro" is prefix of "problem" which is the 2nd and the 6th word in the sentence, but we return 2 as it's the minimal index.
+ */
+
+
+/**
+ * @param {string} sentence
+ * @param {string} searchWord
+ * @return {number}
+ */
+var isPrefixOfWord = function(sentence, searchWord) {
+
+    let sentenceArr = sentence.split(" ");
+    for (i=0;i<sentenceArr.length;i++){
+
+        if (sentenceArr[i].startsWith(searchWord)){
+            return i+1;
+        }
+    }
+    return -1;
+};
+
+
+let solution1455a = "i love eating burger";
+let solution1455aPrefix = "burg"
+let solution1455b = "this problem is an easy problem";
+let solution1455bPrefix = "pro"
+let solution1455c = "i am tired";
+let solution1455cPrefix = "you"
+
+console.log("Solution 1455: " +solution1455a+", " +solution1455aPrefix +  " --> " +isPrefixOfWord(solution1455a,solution1455aPrefix));
+console.log("Solution 1455: " +solution1455b+", " +solution1455bPrefix +  " --> " +isPrefixOfWord(solution1455b,solution1455bPrefix));
+console.log("Solution 1455: " +solution1455c+", " +solution1455cPrefix +  " --> " +isPrefixOfWord(solution1455c,solution1455cPrefix));
+
+
+
+console.log("--------------------------------------------------------------------------------------------\n")
+// ============== Solution 1608 =================
+
+
+/*
+Success
+Details
+Runtime: 80 ms, faster than 100.00% of JavaScript online submissions for Special Array With X Elements Greater Than or Equal X.
+Memory Usage: 38.9 MB, less than 100.00% of JavaScript online submissions for Special Array With X Elements Greater Than or Equal X.
+Next challenges:
+
+
+
+
+ */
+
+/*
+You are given an array nums of non-negative integers. nums is considered special if there exists a number x such that there are exactly x numbers in nums that are greater than or equal to x.
+
+Notice that x does not have to be an element in nums.
+
+Return x if the array is special, otherwise, return -1. It can be proven that if nums is special, the value for x is unique.
+
+
+
+Example 1:
+
+Input: nums = [3,5]
+Output: 2
+Explanation: There are 2 values (3 and 5) that are greater than or equal to 2.
+Example 2:
+
+Input: nums = [0,0]
+Output: -1
+Explanation: No numbers fit the criteria for x.
+If x = 0, there should be 0 numbers >= x, but there are 2.
+If x = 1, there should be 1 number >= x, but there are 0.
+If x = 2, there should be 2 numbers >= x, but there are 0.
+x cannot be greater since there are only 2 numbers in nums.
+Example 3:
+
+Input: nums = [0,4,3,0,4]
+Output: 3
+Explanation: There are 3 values that are greater than or equal to 3.
+Example 4:
+
+Input: nums = [3,6,7,7,0]
+Output: -1
+
+ */
+
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var specialArray = function(nums) {
+
+
+    // We have a number that starts from 0 ,we need to return the number if the number of elements inside the array that are greater or equal to that number equals to the number
+
+    let result = 0;
+    let counter = 0;
+
+     //Remove all 0 from array
+    let countZeros = 0;
+    for (i=0;i<nums.length;i++){
+        if (nums[i]===0){
+          countZeros++;
+        }
+    }
+    if (countZeros<nums.length&& countZeros>0){
+        for (i=0;i<nums.length;i++){
+            if (nums[i]===0){
+                nums.splice(i,1);
+            }
+        }
+    }
+    let max = 0;
+    for (i=0;i<nums.length;i++){
+        if (nums[i]>max){
+            max = nums[i];
+        }
+    }
+
+
+    for (i=0,j=0;result<=max;){
+
+        if (nums[j]>=result){
+            counter++;
+        }
+        j++;
+
+        if (counter===result&& j===nums.length){
+            return result;
+        }
+        else if (counter!==result&&j===nums.length){
+            result++;
+            counter=0;
+            j=0;
+        }
+
+    }
+    console.log(result);
+    console.log(counter);
+    return -1;
+};
+
+
+let nums1608a = [3,5];
+let nums1608b = [0,0];
+let nums1608c = [0,4,3,0,4];
+let nums1608d = [3,6,7,7,0];
+let nums1608e = [3,9,7,8,3,8,6,6];
+let nums1608f = [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100];
+
+
+console.log("Solution 1608: " +nums1608a+" --> " +specialArray(nums1608a));
+console.log("Solution 1608: " +nums1608b+" --> " +specialArray(nums1608b));
+console.log("Solution 1608: " +nums1608c+" --> " +specialArray(nums1608c));
+console.log("Solution 1608: " +nums1608d+" --> " +specialArray(nums1608d));
+console.log("Solution 1608: " +nums1608e+" --> " +specialArray(nums1608e));
+console.log("Solution 1608: " +nums1608f+" --> " +specialArray(nums1608f));
+
+console.log("--------------------------------------------------------------------------------------------\n")
+// ============== Solution 1550 =================
+
+
+/*
+
+Success
+Details
+Runtime: 76 ms, faster than 64.48% of JavaScript online submissions for Three Consecutive Odds.
+Memory Usage: 38.8 MB, less than 5.06% of JavaScript online submissions for Three Consecutive Odds.
+Next challenges:
+
+ */
+
+
+/*
+Given an integer array arr, return true if there are three consecutive odd numbers in the array. Otherwise, return false.
+
+
+Example 1:
+
+Input: arr = [2,6,4,1]
+Output: false
+Explanation: There are no three consecutive odds.
+Example 2:
+
+Input: arr = [1,2,34,3,4,5,7,23,12]
+Output: true
+Explanation: [5,7,23] are three consecutive odds.
+
+
+ */
+
+
+
+/**
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+var threeConsecutiveOdds = function(arr) {
+
+    let counter = 0;
+    for (i=0;i<arr.length;i++){
+        if (arr[i]%2!==0){
+            counter++;
+            if (counter===3){
+                return true;
+            }
+        }
+        else
+        {
+            counter=0;
+        }
+    }
+    return counter>=3 ? true : false;
+};
+
+
+let nums1550a = [2,6,4,1];
+let nums1550b = [1,2,34,3,4,5,7,23,12];
+
+
+console.log("Solution 1550: " +nums1550a+" --> " +threeConsecutiveOdds(nums1550a));
+console.log("Solution 1550: " +nums1550b+" --> " +threeConsecutiveOdds(nums1550b));
+
+
+
+console.log("--------------------------------------------------------------------------------------------\n")
+// ============== Solution 125 =================
+
+/*
+
+Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+
+Note: For the purpose of this problem, we define empty string as valid palindrome.
+
+Example 1:
+
+Input: "A man, a plan, a canal: Panama"
+Output: true
+Example 2:
+
+Input: "race a car"
+Output: false
+ */
+
+/*
+
+481 / 481 test cases passed.
+Status: Accepted
+Runtime: 92 ms
+Memory Usage: 40.9 MB
+
+
+ */
+
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function(s) {
+
+
+    let regex = /[A-Za-z0-9]/;
+
+    if (s==="") return true;
+
+    for (i=0,j=s.length-1;i<=j;){
+
+        let checkI = regex.test(s[i]);
+        let checkJ = regex.test(s[j]);
+
+         if (!checkI){
+            i++;
+        }
+        else if (!checkJ){
+            j--;
+        }
+
+         else if ((checkI&&checkJ&&s[i].toLowerCase()===s[j].toLowerCase())){
+             i++;
+             j--;
+         }
+        else if (!(checkI&&checkJ&&s[i].toLowerCase()===s[j].toLowerCase())){
+            return false;
+        }
+
+    }
+    return true;
+
+};
+
+let solution125a = "A man, a plan, a canal: Panama";
+let solution125b = "race a car";
+let solution125c = ",,,,,,,,,,,,acva";
+
+
+console.log("Solution 125: " +solution125a+" --> " +isPalindrome(solution125a));
+console.log("Solution 125: " +solution125b+" --> " +isPalindrome(solution125b));
+console.log("Solution 125: " +solution125c+" --> " +isPalindrome(solution125c));
+
+
 // ===================================== Knowledge =====================================
 // Useful commands
 
